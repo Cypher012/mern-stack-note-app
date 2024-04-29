@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { UseFormRegister, FieldErrors } from "react-hook-form";
-import { useState } from "react";
+import { MouseEventHandler, useState } from "react";
 
 interface AuthComponent {
   title: "Login" | "SignUp";
@@ -24,7 +24,8 @@ const AuthComponent = ({
   errors,
 }: AuthComponent) => {
   const [visible, setVisible] = useState(false);
-  const handleVisible = () => {
+  const handleVisible: MouseEventHandler<HTMLButtonElement> = (e) => {
+    e.preventDefault();
     setVisible(!visible);
   };
   return (
@@ -103,7 +104,7 @@ const AuthComponent = ({
             />
 
             <button
-              onClick={handleVisible}
+              onClick={(e) => handleVisible(e)}
               className="absolute inset-y-0 end-0 grid place-content-center px-4"
             >
               <svg
